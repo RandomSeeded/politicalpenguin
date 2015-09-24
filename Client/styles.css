@@ -1,0 +1,31 @@
+body {
+  background-color: white;
+  color: #BBB;
+  font-family: arial, sans-serif;
+}
+
+h1 { 
+  font-size: 3em;
+}
+
+.playlist-song {
+  border: 1px solid green;
+}
+
+
+.video-div {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
+.song-hist {
+  float: left;
+  padding: 15px;
+  width: 20%;
+}
+
+li {
+  padding: 2px;
+  list-style-type: none;
+}
