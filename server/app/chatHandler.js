@@ -38,6 +38,14 @@ var getTopSong = module.exports.getTopSong = function (bangs, bangCounts) {
   return topSong;
 };
 
+// Add the top result to our playlist
+var addTopSong = module.exports.addTopSong = function (topSong) {
+  youtube.fetchYoutubeResults(topSong, function (err, results) {
+    app.addToPlaylist(results[0]);
+    sockets.emitPlaylist();
+  });
+};
+
 // Periodically analyze chat and take appropriate action
 module.exports.analyzeChat = function () {
   var analyzeChat = function () {
@@ -64,11 +72,7 @@ module.exports.analyzeChat = function () {
 
     // Add the top-desired bang to the playlist and broadcast to clients
     if (topSong) {
-        youtube.fetchYoutubeResults(topSong, function (err, results) {
-        // Add the top result to our playlist
-        app.addToPlaylist(results[0]);
-        sockets.emitPlaylist();
-      });
+      addTopSong(topSong);
     }
 
     // Re-run the chat handler
